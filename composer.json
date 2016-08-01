@@ -1,0 +1,31 @@
+{
+    "name": "onion/onion-renderer-zendview",
+    "description": "Zend View renderer for expressive",
+    "type": "component",
+    "replaces": [
+        "onion/onion-renderer-twig",
+        "onion/onion-renderer-plates",
+        "onion/onion-renderer-moustache",
+        "onion/onion-renderer-smarty"
+    ],
+    "require": {
+        "zendframework/zend-expressive-zendviewrenderer": "^1.1",
+        "roave/security-advisories": "dev-master",
+        "zendframework/zend-navigation": "^2.8",
+        "erusev/parsedown": "^1.6",
+        "zendframework/zend-paginator": "^2.7"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Onion\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dimitar Dimitrov",
+            "email": "daghostman.dimitrov@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
