@@ -27,5 +27,8 @@
             "email": "daghostman.dimitrov@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
 }
