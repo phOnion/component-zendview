@@ -4,7 +4,9 @@
  */
 
 return [
-    'breaks' => false,
-    'escape' => true,
-    'linkUrls' => true,
+    'markdown' => [
+        'breaks' => false,
+        'escape' => true,
+        'linkUrls' => true,
+    ]
 ];
