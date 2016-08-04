@@ -15,7 +15,7 @@ class Markdown extends AbstractHelper
 
     protected $defaultOptions = [
         'breaks'    => false,
-        'escape'    => false,
+        'escape'    => true,
         'linkUrls'  => true
     ];
 
