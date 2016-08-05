@@ -5,9 +5,13 @@
 # Parsedown
 
  - `breaks` - Should line separators be converted one-to-one or multiples should be treated as one `<br>` (**Default**: `false`)
- - `escape` - Should markdown be escaped or not (**Default**: `true`)
+Treating single line breaks as new lines and add `<br>` or not
+ - `escape` - Escape HTML in content or not (**Default**: `true`)
+Pretty much the effect of `htmlspecialchars()`
  - `linkUrls` - Should URLs get automatically converted to links or should stay as plain text (**Default**: `true`)
-
+Example: `https://google.com` will become `<a href="https://google.com">google.com</a>`
+ - `appendUrlHost` - Append the hostname of the URL at the end of the text (helpful for user generated content) (**Default**: `true`)
+Example: `[Google](https://google.com)` will become `<a href="https://google.com">Google (google.com)</a>`
 So to properly provide this configuration you should have the following file:
 ```
 <?php
@@ -16,7 +20,8 @@ return [
     'markdown' => [
         'breaks' => false,
         'escape' => true,
-        'linkUrls' => true
+        'linkUrls' => true,
+        'appendUrlHost' => true
     ]
 ];
 ```
