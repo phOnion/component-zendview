@@ -5,4 +5,7 @@ php:
   - '7.0'
   - hhvm
   - nightly
-script: phpunit --bootstrap vendor/autoload.php
+install: composer install -o --no-interaction
+script: vendor/bin/phpunit --bootstrap vendor/autoload.php --coverage-clover=coverage.xml
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
