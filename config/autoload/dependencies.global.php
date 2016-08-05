@@ -5,6 +5,9 @@
 
 return [
     'dependencies' => [
+        'invokables' => [
+            \Parsedown::class => \Onion\View\Markdown\ExtendedParser::class
+        ],
         'factories' => [
             \Zend\Expressive\Template\TemplateRendererInterface::class =>
                 Zend\Expressive\ZendView\ZendViewRendererFactory::class,
