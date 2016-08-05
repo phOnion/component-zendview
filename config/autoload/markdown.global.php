@@ -8,5 +8,6 @@ return [
         'breaks' => false,
         'escape' => true,
         'linkUrls' => true,
+        'appendUrlHost' => true
     ]
 ];
