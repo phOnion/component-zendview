@@ -9,6 +9,7 @@
         "onion/onion-renderer-smarty"
     ],
     "require": {
+        "php": "^5.5 || ^7.0",
         "zendframework/zend-expressive-zendviewrenderer": "^1.1",
         "roave/security-advisories": "dev-master",
         "zendframework/zend-navigation": "^2.8",
