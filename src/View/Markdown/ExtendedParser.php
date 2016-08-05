@@ -29,8 +29,8 @@ class ExtendedParser extends \Parsedown
 
         if ($this->isAppendHostNameEnabled && is_array($result) &&
             !array_key_exists('host', parse_url($result['element']['text']))) {
-                $info = parse_url($result['element']['attributes']['href'], PHP_URL_HOST);
-                $result['element']['text'] .= ' (' . $info . ')';
+            $info = parse_url($result['element']['attributes']['href'], PHP_URL_HOST);
+            $result['element']['text'] .= ' (' . $info . ')';
         }
 
         return $result;
