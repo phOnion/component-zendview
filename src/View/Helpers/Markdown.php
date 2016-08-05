@@ -14,18 +14,23 @@ class Markdown extends AbstractHelper
     protected $parser;
 
     protected $defaultOptions = [
-        'breaks'    => false,
-        'escape'    => true,
-        'linkUrls'  => true
+        'breaks'        => false,
+        'escape'        => true,
+        'linkUrls'      => true,
+        'appendUrlHost' => true
     ];
 
-    public function __construct(array $options = [])
+    public function __construct(\Parsedown $parser, array $options = [])
     {
-        $this->parser = new \Parsedown();
+        $this->parser = $parser;
         $options = array_merge($this->defaultOptions, $options);
         $this->parser->setBreaksEnabled($options['breaks'])
             ->setMarkupEscaped($options['escape'])
             ->setUrlsLinked($options['linkUrls']);
+
+        if ($options['appendUrlHost'] === true && method_exists($this->parser, 'appendUrlHostName')) {
+            $this->parser->appendUrlHostName($options['appendUrlHost']);
+        }
     }
 
     public function __invoke($string)

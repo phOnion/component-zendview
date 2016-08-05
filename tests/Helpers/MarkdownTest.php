@@ -7,6 +7,7 @@ namespace Test\Helpers;
 
 
 use Onion\View\Helpers\Markdown;
+use Onion\View\Markdown\ExtendedParser;
 
 class MarkdownTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +18,7 @@ class MarkdownTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->markdown = new Markdown();
+        $this->markdown = new Markdown(new ExtendedParser());
     }
 
     public function testMarkdownParsing()
@@ -43,7 +44,7 @@ class MarkdownTest extends \PHPUnit_Framework_TestCase
 
     public function testWithEscapeDisabled()
     {
-        $md = new Markdown(['escape' => false]);
+        $md = new Markdown(new ExtendedParser(), ['escape' => false]);
         $this->assertSame(
             '<p><strong>test</strong></p>',
             call_user_func($md, '<strong>test</strong>')
@@ -52,7 +53,7 @@ class MarkdownTest extends \PHPUnit_Framework_TestCase
 
     public function testWithBreaksEnabled()
     {
-        $md = new Markdown(['breaks' => true]);
+        $md = new Markdown(new ExtendedParser(), ['breaks' => true]);
         $this->assertSame(
             "<p><strong>test</strong><br />\n<em>Yes</em></p>",
             call_user_func($md, "**test**\n*Yes*")

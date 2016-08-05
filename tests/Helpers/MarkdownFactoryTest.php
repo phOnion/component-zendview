@@ -9,6 +9,7 @@ namespace Helpers;
 use Interop\Container\ContainerInterface;
 use Onion\View\Helpers\Factory\MarkdownFactory;
 use Onion\View\Helpers\Markdown;
+use Onion\View\Markdown\ExtendedParser;
 
 class MarkdownFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,22 +18,18 @@ class MarkdownFactoryTest extends \PHPUnit_Framework_TestCase
     public function testFactoryWithDefaultConfiguration()
     {
         $container = $this->prophesize(ContainerInterface::class);
+        $parserMock = $this->prophesize(ExtendedParser::class);
+        $parserMock->setMarkupEscaped(true)->will(function () use ($parserMock) { return $parserMock->reveal(); });
+        $parserMock->setBreaksEnabled(false)->will(function () use ($parserMock) { return $parserMock->reveal(); });
+        $parserMock->setUrlsLinked(true)->will(function () use ($parserMock) { return $parserMock->reveal(); });
+        $parserMock->appendUrlHostName(true)->will(function () use ($parserMock) { return $parserMock->reveal(); });
         $container->get('config')->willReturn(['markdown' => []]);
+        $container->get(\Parsedown::class)->willReturn($parserMock->reveal());
         /**
          * @var $instance Markdown
          */
         $instance = call_user_func(new MarkdownFactory(), $container->reveal());
 
         $this->assertInstanceOf(Markdown::class, $instance);
-        $this->assertSame('<p>test</p>', call_user_func($instance, 'test'));
-        $this->assertSame("<p>Hello\nWorld</p>", call_user_func($instance, "Hello\nWorld"));
-        $this->assertSame(
-            '<p>&lt;script&gt;alert(&quot;test&quot;)&lt;/script&gt;</p>',
-            call_user_func($instance, '<script>alert("test")</script>')
-        );
-        $this->assertSame(
-            '<p><a href="https://google.com">https://google.com</a></p>',
-            call_user_func($instance, 'https://google.com')
-        );
     }
 }

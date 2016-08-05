@@ -18,6 +18,6 @@ class MarkdownFactory
             $options = $config['markdown'];
         }
 
-        return new Markdown($options);
+        return new Markdown($container->get(\Parsedown::class), $options);
     }
 }
