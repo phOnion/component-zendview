@@ -11,9 +11,7 @@ return [
             \Zend\View\HelperPluginManager::class =>
                 \Zend\Expressive\ZendView\HelperPluginManagerFactory::class,
             \Onion\View\Helpers\Markdown::class =>
-                \Onion\View\Helpers\Factory\MarkdownFactory::class,
-            \Zend\Paginator\Factory::class =>
-                \Onion\View\Helpers\Factory\PaginatorFactory::class
+                \Onion\View\Helpers\Factory\MarkdownFactory::class
         ]
     ]
 ];
